@@ -12,13 +12,13 @@ const editoras : Array<Editora> = [{
 }];
 
 export default class ControleEditora {
-    getNomeEditora(codEditora: number) {
+    public getNomeEditora(codEditora: number) {
         const resultados = editoras.filter(editora => editora.codEditora == codEditora);
         if (resultados.length == 0) return "Editora não encontrada";
         return resultados[0].nome;
     }
 
-    getEditoras() {
+    public getEditoras() {
         return editoras;
     }
 }
