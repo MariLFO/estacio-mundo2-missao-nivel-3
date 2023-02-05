@@ -23,7 +23,7 @@ const LinhaLivro = props => {
                     <li key={index}>{autor}</li>
                 ))}
                 </ul>
-                Autores: {livro.titulo}</td>
+            </td>
         </tr>
     );
 }

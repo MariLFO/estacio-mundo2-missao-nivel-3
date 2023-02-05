@@ -16,7 +16,7 @@ function App() {
                 <Link to="/" className="nav-link">Catálogo</Link>
               </li>
               <li className="nav-item">
-                <Link to="dados" className="nav-link">Dados</Link>
+                <Link to="dados" className="nav-link">Novo Livro</Link>
               </li>
             </ul>
           </nav>
