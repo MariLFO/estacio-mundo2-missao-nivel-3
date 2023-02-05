@@ -10,11 +10,11 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
                 const editoras = controleEditora.getEditoras()
                 res.status(200).json(editoras)
             } catch (error) {
-                res.status(500).json({ message: error })
+                res.status(500).json({ message: 'Erro ao obter editoras' });
             }
-            break
+            break;
         default:
-            res.status(405).json({ message: 'Method not allowed' })
-            break
+            res.status(405).json({ message: 'Método não permitido' })
+            break;
     }
 }
