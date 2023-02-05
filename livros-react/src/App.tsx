@@ -10,11 +10,15 @@ function App() {
   return (
       <React.StrictMode>
         <BrowserRouter>
-          <nav className="navbar navbar-dark bg-dark">
-            <div className="container-fluid">
-              <Link to="/" className="navbar-brand">Catálogo</Link>
-              <Link to="dados" className="navbar-brand">Dados</Link>
-            </div>
+          <nav className="navbar navbar-expand navbar-dark bg-dark">
+            <ul className="navbar-nav">
+              <li className="nav-item active">
+                <Link to="/" className="nav-link">Catálogo</Link>
+              </li>
+              <li className="nav-item">
+                <Link to="dados" className="nav-link">Dados</Link>
+              </li>
+            </ul>
           </nav>
           <Routes>
             <Route path="/" element={<LivroLista />} />
