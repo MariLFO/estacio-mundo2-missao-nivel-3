@@ -58,7 +58,7 @@ const LivroDados = props => {
                     <label htmlFor="autores">Autores (1 por linha)</label>
                     <textarea id="autores" className="form-control" value={autores} onChange={(e) => setAutores(e.target.value)} />
                 </div>
-                <button type="submit">Salvar Livro</button>
+                <button className="btn btn-primary" type="submit">Salvar Livro</button>
             </form>
         </main>
     )
