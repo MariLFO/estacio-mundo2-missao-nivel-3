@@ -1,12 +1,11 @@
 import type { NextPage } from 'next'
 import React, {useState} from 'react';
-import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
 import styles from '../styles/Home.module.css';
 import ControleEditora from "@/classes/controle/ControleEditora";
 import Livro from "@/classes/modelo/Livro";
 import {Menu} from "@/componentes/Menu";
 import Head from "next/head";
-import LivroLista from "@/pages/LivroLista";
+import {useRouter} from "next/router";
 
 const LivroDados: NextPage = () => {
     const controleEditora = new ControleEditora();
@@ -15,7 +14,7 @@ const LivroDados: NextPage = () => {
     const [resumo, setResumo] = useState('')
     const [autores, setAutores] = useState('')
     const [codEditora, setCodEditora] = useState(0)
-    const navigate = useNavigate()
+    const router = useRouter();
 
     const incluirLivro = async (livro:Livro) => {
         const resposta = await fetch(baseURL, {
@@ -48,7 +47,7 @@ const LivroDados: NextPage = () => {
         } as Livro;
 
         await incluirLivro(novoLivro);
-        navigate('/LivroLista');
+        await router.push('/LivroLista');
     };
 
     return (

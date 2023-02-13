@@ -23,7 +23,7 @@ const livros : Array<Livro> = [{
 export default class ControleLivro {
     incluir(livro: Livro) {
         livro.codigo = livros.length > 0
-            ? livros.at(-1)!.codigo + 1
+            ? livros[livros.length -1].codigo + 1
             : 1;
         livros.push(livro);
     }
