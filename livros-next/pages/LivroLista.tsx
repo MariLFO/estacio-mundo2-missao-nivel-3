@@ -5,6 +5,7 @@ import Head from 'next/head';
 import Livro from "@/classes/modelo/Livro";
 import {Menu} from '../componentes/Menu'
 import {LinhaLivro} from "@/componentes/LinhaLivro";
+import {BrowserRouter} from "react-router-dom";
 
 const LivroLista: NextPage = () => {
     const baseURL: string = "http://localhost:3000/api/livros";
@@ -26,48 +27,52 @@ const LivroLista: NextPage = () => {
     useEffect(() => {
         obterLivros()
             .then(dados => {
-                setLivros(dados)
-                setCarregado(true)
+                setLivros(dados.livros);
+                setCarregado(true);
             })
-    }, [])
+    }, [carregado])
 
     const excluir = (codigo: number) => {
         excluirLivro(codigo)
             .then(() => setCarregado(false));
     }
 
-    return (
-        <div className={styles.container}>
-            <Head>
-                <title>Loja Next</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <Menu />
-            <main>
-                <h1 className="title">Livros</h1>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Título</th>
-                        <th>Autor</th>
-                        <th>Editora</th>
-                        <th>Ano</th>
-                        <th>Ações</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {livros.map(livro => (
-                        <LinhaLivro
-                            key={livro.codigo}
-                            livro={livro}
-                            excluir={excluir}
-                        />
-                    ))}
-                    </tbody>
-                </table>
-            </main>
-        </div>
-    );
+    if (!carregado) {
+        return "Carregando...";
+    }
+    else
+        return (
+            <div className={styles.container}>
+                <Head>
+                    <title>Loja Next</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
+                <Menu />
+                <main>
+                    <h1>Catálogo de Livros</h1>
+                    <table className="table table-hover">
+                        <thead className="table-dark">
+                        <tr>
+                            <th>Título</th>
+                            <th>Resumo</th>
+                            <th>Editora</th>
+                            <th>Autores</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {livros.map(livro => (
+                            <LinhaLivro
+                                key={livro.codigo}
+                                livro={livro}
+                                excluir={() => excluir(livro.codigo)}
+                            />
+                        ))}
+                        </tbody>
+                    </table>
+                </main>
+            </div>
+        );
 }
+
+export default LivroLista;
